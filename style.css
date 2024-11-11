@@ -1,0 +1,268 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    /* Pixel art clouds background */
+    background-color: #A0D9FF; /* Pastel blue background */
+    background-image:
+        /* Light grey grid */
+        linear-gradient(to right, lightgrey 1px, transparent 1px),
+        linear-gradient(to bottom, lightgrey 1px, transparent 1px),
+        /* Clouds pattern */
+        linear-gradient(45deg, #A0D9FF 25%, #FFFFFF 25%, #FFFFFF 50%, #A0D9FF 50%, #A0D9FF 75%, #FFFFFF 75%, #FFFFFF 100%);
+    background-size: 
+        /* Grid size */
+        20px 20px,
+        20px 20px,
+        /* Clouds pattern size */
+        80px 80px;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+#header-time-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#live-time {
+    font-size: 1.2em;
+    color: #333; /* Dark text for contrast */
+}
+
+#time-button {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+#time-button:hover {
+    background-color: #45A049;
+}
+
+/* Emoji deck styles */
+#emoji-deck {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 60px; /* Height of the header */
+    left: 0;
+    width: 100%;
+    z-index: 900;
+}
+
+/* Removed the deck-header to save space */
+/* .deck-header {
+    text-align: center;
+    margin-bottom: 10px;
+} */
+
+/* Adjusted styles due to removal of deck-header */
+.deck-tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 6px; /* Reduced padding */
+    background-color: #f1f1f1;
+    border: none;
+    font-size: 0.8em; /* Reduced font size */
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.tab-button:hover {
+    background-color: #e0e0e0;
+}
+
+.tab-button.active {
+    background-color: #fff;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.deck-body {
+    padding: 0;
+    max-height: calc(100vh - 60px - 100px); /* Adjusted for header and tabs */
+    overflow-y: auto;
+}
+
+.emoji-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px; /* Reduced gap between emojis */
+}
+
+.emoji-item {
+    width: 40px; /* Reduced size */
+    height: 40px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+}
+
+.emoji-item:active {
+    cursor: grabbing;
+}
+
+/* Main content styling */
+main {
+    padding-top: calc(60px + 180px); /* Adjusted padding-top due to smaller emoji deck */
+    padding-bottom: 10px; /* Space for bottom content */
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 15px;
+}
+
+/* Timeslot styles */
+.timeslot {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid lightgrey; /* Light grey stroke */
+    border-radius: 4px; /* Slightly rounded corners */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeslot-header {
+    font-size: 1em;
+    margin-bottom: 8px;
+    color: #333; /* Dark text for contrast */
+}
+
+.emoji-placeholders {
+    display: flex;
+    gap: 8px;
+}
+
+.emoji-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(240, 240, 240, 0.8);
+    border: 2px dashed rgba(204, 204, 204, 0.8);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    position: relative;
+}
+
+.emoji-placeholder.highlight {
+    background-color: rgba(224, 224, 224, 0.8);
+    border-color: #4CAF50;
+}
+
+.note-placeholder {
+    margin-top: 8px;
+}
+
+.note-input {
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    font-size: 0.9em;
+    border: 1px solid rgba(204, 204, 204, 0.8);
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.note-input:focus {
+    border-color: #4CAF50;
+}
+
+/* Draggable clone style */
+.dragging-clone {
+    position: absolute;
+    pointer-events: none;
+    z-index: 3000;
+    transform: translate(-50%, -50%);
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    /* Adjustments for smaller screens */
+    header {
+        padding: 8px;
+        top: 0;
+    }
+    #live-time {
+        font-size: 1em;
+    }
+    #time-button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+    #emoji-deck {
+        top: 50px; /* Adjusted header height */
+    }
+    /* Removed the deck-header to save space */
+    /* .deck-header {
+        display: none;
+    } */
+    .deck-header h2 {
+        font-size: 1em;
+    }
+    .tab-button {
+        padding: 4px; /* Further reduced padding */
+        font-size: 0.7em; /* Reduced font size */
+    }
+    .emoji-item {
+        width: 35px; /* Further reduced size */
+        height: 35px;
+        font-size: 1em;
+    }
+    main {
+        padding-top: calc(50px + 160px); /* Adjusted for smaller header and emoji deck */
+    }
+    .timeslot {
+        padding: 8px;
+    }
+    .timeslot-header {
+        font-size: 0.9em;
+    }
+    .emoji-placeholder {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+    }
+    .note-input {
+        height: 45px;
+        font-size: 0.8em;
+    }
+}

@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Advanced Mobile Emoji Planner</title>
-  <!-- Meta tags for responsiveness -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Open Sans Font Integration -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
-  <!-- Sortable.js Library -->
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
-  <!-- Emoji Data Library -->
-  <script src="https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.1/lib/js/joypixels.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Mobile Drag-And-Drop Emoji Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include the CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Planner Container -->
-  <div class="planner-container">
-    <!-- Toggle Button for Emoji Deck -->
-    <button id="deck-toggle">Open Emoji Deck</button>
+
+    <!-- The background is now handled entirely via CSS -->
+
+    <header>
+        <div id="header-time-container">
+            <span id="live-time">--:--:--</span>
+            <button id="time-button">Settings</button>
+        </div>
+    </header>
 
     <!-- Emoji Deck -->
-    <div class="emoji-deck closed" id="emoji-deck">
-      <!-- Search Bar -->
-      <div class="search-bar">
-        <input type="text" id="emoji-search" placeholder="Search emojis...">
-      </div>
-      <!-- Category Selector -->
-      <div class="category-selector" id="category-selector">
-        <!-- Categories will be dynamically generated here -->
-      </div>
-      <!-- Emoji Container -->
-      <div class="emoji-container" id="emoji-container">
-        <!-- Emojis will be dynamically generated here -->
-      </div>
+    <div id="emoji-deck" class="emoji-deck">
+        <!-- Removed deck-header to save space -->
+        <!-- <div class="deck-header">
+            <h2>Select Emoji</h2>
+        </div> -->
+        <div class="deck-tabs">
+            <button class="tab-button active" data-category="smileys">Smileys</button>
+            <button class="tab-button" data-category="activities">Activities</button>
+            <button class="tab-button" data-category="food">Food</button>
+        </div>
+        <div class="deck-body">
+            <div id="emoji-grid" class="emoji-grid">
+                <!-- Emojis will be dynamically generated here -->
+            </div>
+        </div>
     </div>
 
-    <!-- Timeline -->
-    <div class="timeline" id="timeline">
-      <!-- Timeslots will be generated here -->
-    </div>
-  </div>
-  <!-- JavaScript File -->
-  <script src="script.js"></script>
+    <main>
+        <div class="timeline" id="timeline">
+            <!-- Timeslots will be generated here -->
+        </div>
+    </main>
+
+    <!-- Include the JS -->
+    <script src="script.js"></script>
 </body>
 </html>
